@@ -8,7 +8,7 @@ $rez = [];
 
 while ($rw = $q->fetch_object()) {
 	$res[] = $rw;
-}
+};
 echo json_encode($res);
 
 ?>

@@ -4,10 +4,10 @@
 	<title></title>
 </head>
 <body>
-	<a href="javascript:void(0)">Naslovna</a>
-	<a href="javascript:void(0)">O nama</a>
-	<a href="javascript:void(0)">Kontakt</a>
-	<a href="javascript:void(0)" onclick="loadData()">Mostovi</a>
+	<a href="javascript:void(0)" onclick="loadPage('naslovna.php')">Naslovna</a>
+	<a href="javascript:void(0)" onclick="loadPage('onama.php')">O nama</a>
+	<a href="javascript:void(0)" onclick="loadPage('kontakt.php')">Kontakt</a>
+	<a href="javascript:void(0)" onclick="loadData()">Tel imenik</a><br>
 <div id="strana"></div>
 </body>
 </html>
@@ -19,6 +19,9 @@ $strane = [
 	"3" => "kontakt.php"
 ];
 ?>
+<div id="strana">
+<?php include $strane[$_GET['pg']]; ?>
+</div>
 <script>
 	function loadData(){
 		var ispis = document.getElementById("strana");
@@ -33,6 +36,20 @@ $strane = [
 		}
 	}
 	xhr.open("get","korisnici.php",true);
+	xhr.send(null);
+}
+
+
+function loadPage(page){
+	var ispis = document.getElementById("strana");
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var file = xhr.responseText;
+			ispis.innerHTML = file;
+		}
+	}
+	xhr.open("GET","page",true);
 	xhr.send(null);
 }
 

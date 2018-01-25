@@ -1,5 +1,5 @@
 <?php
-echo "<br />";
-echo "<h1>Ja sam naslovna stranica</h1><br />";
+echo "<h1>".date('h:i:sa')."</h1>";
+
 ?>
 
